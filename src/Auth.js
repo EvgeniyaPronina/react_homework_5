@@ -4,16 +4,10 @@ import { authorizeUser } from './AuthorizeApi';
 
 class Auth extends Component {
   state = {
-    isAuthorized: false,
     email: '',
     password: '',
     showError: false
   };
-
-  componentWillReceiveProps(newProps) {
-      const { isAuthorized } = newProps;
-      this.setState({ isAuthorized: isAuthorized})
-  }
 
   handleChange = e => {
     let inputVal = e.target.value;
@@ -30,7 +24,8 @@ class Auth extends Component {
   };
 
   render() {
-    const { isAuthorized, showError } = this.state;
+    const {  showError } = this.state;
+    const { isAuthorized  } = this.props;
 
       return (
       <div>
