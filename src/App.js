@@ -51,8 +51,13 @@ class App extends Component {
           ) : (
             <Redirect from="/private" to="/auth" />
           )}
-          <Route path="/auth" component={Auth} />
+          {/*<Route path="/auth" component={Auth} />*/}
+          <Route path="/auth" render={(props) => (
+              <Auth isAuthorized={isAuthorized} {...props} />
+          )} />
           {isAuthorized === false ? <Route component={Home} /> : null}
+
+
         </Switch>
       </div>
     );

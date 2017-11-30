@@ -10,10 +10,16 @@ class Auth extends Component {
     showError: false
   };
 
+//   componentWillReceiveProps(newProps) {
+//       const { isAuthorized } = newProps;
+// console.log(isAuthorized)
+//   (isAuthorized ) ? <Redirect from="/auth" to="/" /> : null
+//   }
+
   handleChange = e => {
     let inputVal = e.target.value;
     let inputName = e.target.name;
-    this.setState(...this.state, { [inputName]: inputVal });
+    this.setState({ [inputName]: inputVal });
   };
 
   handleSubmit = () => {
@@ -32,10 +38,8 @@ class Auth extends Component {
         <input type="text" name="email" onChange={this.handleChange} />
         <input type="text" name="password" onChange={this.handleChange} />
         <button onClick={this.handleSubmit}>Авторизоваться</button>
-        {isAuthorized === true ? <Redirect from="/private" to="/" /> : null}
-        {showError ? (
-          <p className="error">Имя пользователя или пароль введены неверно</p>
-        ) : null}
+        {isAuthorized === true ? <Redirect from="/auth" to="/" /> : null}
+        {showError && <p className="error">Имя пользователя или пароль введены неверно</p> }
       </div>
     );
   }

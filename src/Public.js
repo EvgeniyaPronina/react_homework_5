@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default () => <p>Private page</p>;
+export default () => <p>Public page</p>;
