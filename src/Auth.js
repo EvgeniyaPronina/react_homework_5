@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { authorizeUser } from './AuthorizeApi';
+import { authorizeUser, isAuthorized } from './AuthorizeApi';
 
 class Auth extends Component {
   state = {
+    isAuthorized: isAuthorized,
     email: '',
     password: '',
     showError: false
@@ -18,14 +19,11 @@ class Auth extends Component {
   handleSubmit = () => {
     let { email, password } = this.state;
     let isCorrect = authorizeUser(email, password);
-    if (isCorrect === false) {
-      this.setState({ showError: true });
-    }
+    isCorrect ? this.setState({ isAuthorized: true }): this.setState({ showError: true })
   };
 
   render() {
-    const {  showError } = this.state;
-    const { isAuthorized  } = this.props;
+    const {  showError, isAuthorized } = this.state;
 
       return (
       <div>
